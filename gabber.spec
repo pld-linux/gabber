@@ -9,6 +9,7 @@ Group(de):	Applikationen/Kommunikation
 Group(pl):	Aplikacje/Komunikacja
 Source0:	http://prdownloads.sourceforge.net/gabber/%{name}-%{version}.tar.gz
 Patch0:		%{name}-DESTDIR.patch
+patch1:		%{name}-ac_fixes.patch
 URL:		http://gabber.sourceforge.net/
 BuildRequires:	ORBit-devel
 BuildRequires:	autoconf
@@ -51,8 +52,18 @@ tym prostym w u¿yciu.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
 %build
+(cd jabberoo
+rm missing
+libtoolize --copy --force
+gettextize --copy --force
+aclocal
+autoheader
+autoconf
+automake -a -c)
+
 rm missing
 libtoolize --copy --force
 xml-i18n-toolize --copy --force
