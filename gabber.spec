@@ -12,6 +12,7 @@ License:	GPL
 Group:		Applications/Communications
 Source0:	http://prdownloads.sourceforge.net/gabber/%{name}-%{version}.tar.gz
 Patch0:		%{name}-DESTDIR.patch
+Patch1:		%{name}-ac_fixes.patch
 URL:		http://gabber.sourceforge.net/
 BuildRequires:	ORBit-devel
 BuildRequires:	autoconf
@@ -62,12 +63,13 @@ mesmo tempo fácil de usar.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
 %build
 sed -e s/AM_GNOME_GETTEXT/AM_GNU_GETTEXT/ configure.in > configure.in.tmp
 mv -f configure.in.tmp configure.in
 rm -f missing
-xml-i18n-toolize --copy --force
+intltoolize --copy --force
 %{__gettextize}
 aclocal -I %{_aclocaldir}/gnome
 autoheader
