@@ -1,8 +1,11 @@
-diff -durN gabber-0.8.6.orig/doc/C/Makefile.am gabber-0.8.6/doc/C/Makefile.am
---- gabber-0.8.6.orig/doc/C/Makefile.am	Wed Jan  2 21:45:03 2002
-+++ gabber-0.8.6/doc/C/Makefile.am	Sat Jan 12 13:13:50 2002
-@@ -51,11 +51,11 @@
- 	$(mkinstalldirs) $(gabber_helpdir)/stylesheet-images
+--- gabber-0.8.6/doc/C/Makefile.am~	Wed Jan  2 21:45:03 2002
++++ gabber-0.8.6/doc/C/Makefile.am	Sat Jan 12 18:34:16 2002
+@@ -48,14 +48,14 @@
+ 	-cp *.png $(distdir)/
+ 
+ install-data-local: index.html
+-	$(mkinstalldirs) $(gabber_helpdir)/stylesheet-images
++	$(mkinstalldirs) $(DESTDIR)$(gabber_helpdir)/stylesheet-images
  	-for file in $(SGML_FILES) $(srcdir)/gabber/*.html $(srcdir)/gabber/*.css $(srcdir)/*.png; do \
  	basefile=`echo $$file | sed -e 's,^.*/,,'`; \
 -	$(INSTALL_DATA) $(srcdir)/$$file $(gabber_helpdir)/$$basefile; \
