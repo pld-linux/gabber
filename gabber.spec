@@ -15,7 +15,7 @@ Source0:	http://www.jabberstudio.org/files/gabber/%{name}-%{version}.tar.gz
 Patch0:		%{name}-types.patch
 URL:		http://gabber.sourceforge.net/
 BuildRequires:	gconfmm-devel >= 2.0.0
-BuildRequires:	jabberoo-devel >= 1.9.0.1
+BuildRequires:	jabberoo-devel >= 1.9.1
 BuildRequires:	libglademm-devel >= 2.0.0
 BuildRequires:	libsigc++-devel >= 1.2.3
 Requires(post):	GConf2
