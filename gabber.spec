@@ -17,14 +17,14 @@ BuildRequires:	ORBit-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	gal-devel >= 0.19
-BuildRequires:	gdk-pixbuf-devel
+BuildRequires:	gdk-pixbuf-gnome-devel
 BuildRequires:	gettext-devel
 BuildRequires:	gnome-libs-devel >= 1.2.13
 BuildRequires:	gnomemm-devel >= 1.2.0
 BuildRequires:	gnome-print-devel
 BuildRequires:	gtk+-devel >= 1.2.5
 BuildRequires:	gtkmm-devel >= 1.2.5
-BuildRequires:	libglade-devel >= 0.17
+BuildRequires:	libglade-gnome-devel >= 0.17
 BuildRequires:	libsigc++-devel
 BuildRequires:	libunicode-devel
 BuildRequires:	openssl-devel >= 0.9.6a
@@ -101,19 +101,17 @@ rm -rf $RPM_BUILD_ROOT
 	Applicationsdir=%{_applnkdir}/Network/Communications \
 	omf_dest_dir=%{_omf_dest_dir}/%{name}
 
-gzip -9nf AUTHORS NEWS README TODO
-
 %find_lang %{name} --with-gnome --all-name
-
-%post	-p /usr/bin/scrollkeeper-update
-%postun -p /usr/bin/scrollkeeper-update
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
+%post	-p /usr/bin/scrollkeeper-update
+%postun -p /usr/bin/scrollkeeper-update
+
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc *.gz
+%doc AUTHORS NEWS README TODO
 %{_sysconfdir}/sound/events/*
 %attr(755,root,root) %{_bindir}/*
 %{_mandir}/man?/*
