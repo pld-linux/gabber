@@ -6,13 +6,14 @@ Summary:	A GNOME Jabber client
 Summary(pl):	Klient Jabber dla GNOME
 Summary(pt_BR):	Um cliente GNOME para o Jabber
 Name:		gabber
-Version:	1.9.3
-Release:	0.1
+Version:	1.9.4
+Release:	1.1
 License:	GPL
 Group:		Applications/Communications
 Source0:	http://www.jabberstudio.org/files/gabber/Gabber-%{version}.tar.gz
-# Source0-md5:	f170c11ea54f9b4fadc28d9ae431d46b
+# Source0-md5:	eea74466431b962349ae9a911f010ea2
 Patch0:		%{name}-types.patch
+Patch1:		%{name}-conffix.patch
 URL:		http://gabber.sourceforge.net/
 BuildRequires:	gconfmm-devel >= 2.0.0
 BuildRequires:	jabberoo-devel >= 1.9.1
@@ -42,7 +43,8 @@ mesmo tempo fácil de usar.
 
 %prep
 %setup -q -n Gabber-%{version}
-%patch -p1
+%patch0 -p1
+%patch1 -p1
 
 %build
 CXXFLAGS="%{rpmcflags}"
