@@ -1,0 +1,33 @@
+diff -urN gabber-0.8.2.org/doc/C/Makefile.am gabber-0.8.2/doc/C/Makefile.am
+--- gabber-0.8.2.org/doc/C/Makefile.am	Wed Apr 25 01:29:33 2001
++++ gabber-0.8.2/doc/C/Makefile.am	Wed Apr 25 01:30:27 2001
+@@ -41,21 +41,21 @@
+ ## when we make dist, we include the generated HTML so people don't
+ ## have to have the docbook tools
+ dist-hook:
+-	mkdir $(distdir)/gabber $(distdir)/gabber/stylesheet-images
+-	-cp gabber/*.html  $(distdir)/gabber
+-	-cp gabber/*.css $(distdir)/gabber
+-	-cp gabber/stylesheet-images/*.* $(distdir)/gabber/stylesheet-images
+-	-cp *.png $(distdir)/
++	mkdir $(distdir)/gabber $(DESTDIR)$(distdir)/gabber/stylesheet-images
++	-cp gabber/*.html  $(DESTDIR)$(distdir)/gabber
++	-cp gabber/*.css $(DESTDIR)$(distdir)/gabber
++	-cp gabber/stylesheet-images/*.* $(DESTDIR)$(distdir)/gabber/stylesheet-images
++	-cp *.png $(DESTDIR)$(distdir)/
+ 
+ install-data-local: index.html
+-	$(mkinstalldirs) $(gabber_helpdir)/stylesheet-images
++	$(mkinstalldirs) $(DESTDIR)$(gabber_helpdir)/stylesheet-images
+ 	-for file in $(srcdir)/gabber/*.html $(srcdir)/gabber/*.css $(srcdir)/*.png; do \
+ 	basefile=`echo $$file | sed -e 's,^.*/,,'`; \
+-	$(INSTALL_DATA) $(srcdir)/$$file $(gabber_helpdir)/$$basefile; \
++	$(INSTALL_DATA) $(srcdir)/$$file $(DESTDIR)$(gabber_helpdir)/$$basefile; \
+ 	done
+ 	-for file in $(srcdir)/gabber/stylesheet-images/*.*; do \
+ 	basefile=`echo $$file | sed -e 's,^.*/,,'`; \
+-	$(INSTALL_DATA) $(srcdir)/$$file $(gabber_helpdir)/stylesheet-images/$$basefile; \
++	$(INSTALL_DATA) $(srcdir)/$$file $(DESTDIR)$(gabber_helpdir)/stylesheet-images/$$basefile; \
+ 	done
+ 
+ gabber.ps: gabber.sgml
