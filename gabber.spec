@@ -26,7 +26,7 @@ BuildRequires:	gtk+-devel >= 1.2.5
 BuildRequires:	gtkmm-devel >= 1.2.5
 BuildRequires:	intltool
 BuildRequires:	libglade-gnome-devel >= 0.17
-BuildRequires:	libsigc++-devel
+BuildRequires:	libsigc++1-devel
 BuildRequires:	libunicode-devel
 BuildRequires:	openssl-devel >= 0.9.6a
 BuildRequires:	scrollkeeper
