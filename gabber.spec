@@ -10,30 +10,32 @@ Group(pl):	Aplikacje/Komunikacja
 Source0:	http://prdownloads.sourceforge.net/gabber/%{name}-%{version}.tar.gz
 Patch0:		%{name}-DESTDIR.patch
 URL:		http://gabber.sourceforge.net/
-BuildRequires:	gnome-libs-devel >= 1.2.13
-BuildRequires:	gtk+-devel >= 1.2.5
 BuildRequires:	ORBit-devel
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	gnome-libs-devel >= 1.2.13
+BuildRequires:	gnomemm-devel
+BuildRequires:	gettext-devel
+BuildRequires:	gtk+-devel >= 1.2.5
+BuildRequires:	gtkmm-devel >= 1.1.12
+BuildRequires:	libtool
+BuildRequires:	iconv >= 2.2.0
 BuildRequires:	libglade-devel
 BuildRequires:	libsigc++-devel
-BuildRequires:	gtkmm-devel >= 1.1.12
-BuildRequires:	gnomemm-devel
-BuildRequires:	openssl-devel
 BuildRequires:	libunicode-devel
-BuildRequires:	iconv >= 2.2.0
-BuildRequires:	gettext-devel
+BuildRequires:	openssl-devel
+BuildRequires:	scrollkeeper
 BuildRequires:	xml-i18n-tools
-BuildRequires:	esound-devel
-BuildRequires:	automake
-BuildRequires:	autoconf
-BuildRequires:	libtool
 Requires:	iconv >= 2.2.0
 Prereq:		/sbin/ldconfig
+Prereq:		scrollkeeper
 Requires:	applnk
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_prefix		/usr/X11R6
 %define		_sysconfdir	/etc/X11/GNOME
 %define		_mandir		%{_prefix}/man
+%define		_omf_dest_dir	%(scrollkeeper-config --omfdir)
 
 %description
 Gabber is a Gnome client for the distributed Open Source instant
@@ -72,11 +74,15 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
-	Applicationsdir=%{_applnkdir}/Network/Communications
-	
+	Applicationsdir=%{_applnkdir}/Network/Communications \
+	omf_dest_dir=%{_omf_dest_dir}/omf/gabber
+
 gzip -9nf AUTHORS NEWS README TODO
 
 %find_lang %{name} --with-gnome --all-name
+
+%post	-p /usr/bin/scrollkeeper-update
+%postun -p /usr/bin/scrollkeeper-update
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -88,6 +94,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/*
 %{_applnkdir}/Network/Communications/*.desktop
 %{_datadir}/%{name}
-%{_datadir}/omf/%{name}
+%{_omf_dest_dir}/omf/%{name}
 %{_pixmapsdir}/*
 %{_datadir}/sounds/*
