@@ -58,6 +58,7 @@ tym prostym w u¿yciu.
 %build
 cd jabberoo
 rm missing
+mkdir libsigc++
 libtoolize --copy --force
 gettextize --copy --force
 aclocal -I %{_aclocaldir}/gnome
