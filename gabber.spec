@@ -7,13 +7,15 @@ Summary(pl):	Klient Jabber dla GNOME
 Summary(pt_BR):	Um cliente GNOME para o Jabber
 Name:		gabber
 Version:	0.8.7
-Release:	4
+Release:	5
 License:	GPL
 Group:		Applications/Communications
 Source0:	http://prdownloads.sourceforge.net/gabber/%{name}-%{version}.tar.gz
+# Source0-md5:	afd0c258b27dfb386e7ec668a9d371aa
 Patch0:		%{name}-DESTDIR.patch
 Patch1:		%{name}-ac_fixes.patch
 Patch2:		%{name}-omf.patch
+Patch3:		%{name}-desktop.patch
 URL:		http://gabber.sourceforge.net/
 BuildRequires:	ORBit-devel
 BuildRequires:	autoconf
@@ -66,6 +68,7 @@ mesmo tempo fácil de usar.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 %build
 sed -e s/AM_GNOME_GETTEXT/AM_GNU_GETTEXT/ configure.in > configure.in.tmp
