@@ -12,6 +12,7 @@ License:	GPL
 Group:		Applications/Communications
 # Source0-md5:	6278df1e11f5e3a0c07f7b917d285e30
 Source0:	http://www.jabberstudio.org/files/gabber/%{name}-%{version}.tar.gz
+Patch0:		%{name}-types.patch
 URL:		http://gabber.sourceforge.net/
 BuildRequires:	gconfmm-devel >= 2.0.0
 BuildRequires:	jabberoo-devel >= 1.9.0.1
@@ -40,6 +41,7 @@ mesmo tempo fácil de usar.
 
 %prep
 %setup -q
+%patch -p1
 
 %build
 CXXFLAGS="%{rpmcflags}"
