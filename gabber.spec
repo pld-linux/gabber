@@ -11,6 +11,7 @@ Release:	4
 License:	GPL
 Group:		Applications/Communications
 Source0:	http://dl.sourceforge.net/gabber/%{name}-%{version}.tar.gz
+# Source0-md5:	afd0c258b27dfb386e7ec668a9d371aa
 Patch0:		%{name}-DESTDIR.patch
 Patch1:		%{name}-ac_fixes.patch
 Patch2:		%{name}-omf.patch
