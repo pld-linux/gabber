@@ -59,6 +59,9 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT \
 	GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1
 
+# modules are loaded through Glib::Module, i.e. gmodule interface
+rm -f $RPM_BUILD_ROOT%{_libdir}/%{name}/*.{a,la}
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -72,7 +75,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/*
 %dir %{_libdir}/%{name}
 %attr(755,root,root) %{_libdir}/%{name}/*.so
-%{_libdir}/%{name}/*.la
 %{_datadir}/%{name}
 %{_desktopdir}/*
 %{_pixmapsdir}/*
