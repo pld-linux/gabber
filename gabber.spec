@@ -10,21 +10,6 @@ Version:	0.8.7
 Release:	1
 License:	GPL
 Group:		Applications/Communications
-Group(cs):	Aplikace/Komunikace
-Group(da):	Programmer/Kommunikation
-Group(de):	Applikationen/Kommunikation
-Group(es):	Aplicaciones/Comunicaciones
-Group(fr):	Applications/Transmissions
-Group(is):	Forrit/Samskipti
-Group(it):	Applicazioni/Comunicazioni
-Group(ja):	╔╒╔в╔Й╔╠║╪╔╥╔Г╔С/дл©╝
-Group(no):	Applikasjoner/Kommunikasjon
-Group(pl):	Aplikacje/Komunikacja
-Group(pt):	AplicaГУes/ComunicaГУes
-Group(ru):	Приложения/Коммуникации
-Group(sl):	Programi/Komunikacije
-Group(sv):	TillДmpningar/Kommunikation
-Group(uk):	Прикладн╕ Програми/Комун╕кац╕╖
 Source0:	http://prdownloads.sourceforge.net/gabber/%{name}-%{version}.tar.gz
 Patch0:		%{name}-DESTDIR.patch
 URL:		http://gabber.sourceforge.net/
