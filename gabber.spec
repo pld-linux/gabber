@@ -2,7 +2,6 @@
 # Conditional build:
 # _with_ipv6        - with IPv6 support
 #
-
 Summary:	A GNOME Jabber client
 Summary(pl):	Klient Jabber dla GNOME
 Summary(pt_BR):	Um cliente GNOME para o Jabber
@@ -14,11 +13,12 @@ Group:		Applications/Communications
 # Source0-md5:	6278df1e11f5e3a0c07f7b917d285e30
 Source0:	http://www.jabberstudio.org/files/gabber/%{name}-%{version}.tar.gz
 URL:		http://gabber.sourceforge.net/
-Requires:	gnupg
 BuildRequires:	gconfmm-devel >= 2.0.0
 BuildRequires:	jabberoo-devel >= 1.9.0.1
 BuildRequires:	libglademm-devel >= 2.0.0
 BuildRequires:	libsigc++-devel >= 1.2.3
+Requires(post):	GConf2
+Requires:	gnupg
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -68,8 +68,9 @@ rm -rf $RPM_BUILD_ROOT
 %doc AUTHORS NEWS README TODO
 %{_sysconfdir}/gconf/schemas/*
 %attr(755,root,root) %{_bindir}/*
+%dir %{_libdir}/%{name}
 %attr(755,root,root) %{_libdir}/%{name}/*.so
 %{_libdir}/%{name}/*.la
 %{_datadir}/%{name}
-%{_datadir}/applications/*
+%{_desktopdir}/*
 %{_pixmapsdir}/*
