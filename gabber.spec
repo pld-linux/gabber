@@ -73,8 +73,8 @@ rm -rf $RPM_BUILD_ROOT
 %doc AUTHORS NEWS README TODO
 %{_sysconfdir}/gconf/schemas/*
 %attr(755,root,root) %{_bindir}/*
-%dir %{_libdir}/%{name}
-%attr(755,root,root) %{_libdir}/%{name}/*.so
-%{_datadir}/%{name}
+%dir %{_libdir}/Gabber
+%attr(755,root,root) %{_libdir}/Gabber/*.so
+%{_datadir}/Gabber
 %{_desktopdir}/*
 %{_pixmapsdir}/*
