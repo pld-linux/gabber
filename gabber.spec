@@ -10,7 +10,7 @@ Version:	0.8.7
 Release:	4
 License:	GPL
 Group:		Applications/Communications
-Source0:	http://prdownloads.sourceforge.net/gabber/%{name}-%{version}.tar.gz
+Source0:	http://dl.sourceforge.net/gabber/%{name}-%{version}.tar.gz
 Patch0:		%{name}-DESTDIR.patch
 Patch1:		%{name}-ac_fixes.patch
 Patch2:		%{name}-omf.patch
@@ -33,8 +33,6 @@ BuildRequires:	libunicode-devel
 BuildRequires:	openssl-devel >= 0.9.7
 BuildRequires:	scrollkeeper
 BuildRequires:	xmms-devel
-Requires(post,postun):	/sbin/ldconfig
-Requires(post,postun):	scrollkeeper
 Requires:	applnk
 Requires:	gnupg
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
