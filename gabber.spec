@@ -2,7 +2,7 @@ Summary:	A GNOME Jabber client
 Summary(es):	Klient Jabber dla GNOME
 Name:		gabber
 Version:	0.8.2
-Release:	4
+Release:	5
 License:	GPL
 Group:		Applications/Communications
 Group(de):	Applikationen/Kommunikation
@@ -14,7 +14,7 @@ BuildRequires:	ORBit-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	gnome-libs-devel >= 1.2.13
-BuildRequires:	gnomemm-devel >= 1.1.21
+BuildRequires:	gnomemm-devel >= 1.2.0
 BuildRequires:	gettext-devel
 BuildRequires:	gtk+-devel >= 1.2.5
 BuildRequires:	gtkmm-devel >= 1.1.12
@@ -28,6 +28,7 @@ BuildRequires:	xml-i18n-tools
 Prereq:		/sbin/ldconfig
 Prereq:		scrollkeeper
 Requires:	applnk
+Requires:	gnupg
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_prefix		/usr/X11R6
