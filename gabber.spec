@@ -73,14 +73,14 @@ mv -f configure.in.tmp configure.in
 rm -f missing
 intltoolize --copy --force
 %{__gettextize}
-aclocal -I %{_aclocaldir}/gnome
-autoheader
+%{__aclocal} -I %{_aclocaldir}/gnome
+%{__autoheader}
 %{__autoconf}
 %{__automake}
 cd jabberoo
 rm -f missing
-aclocal -I %{_aclocaldir}/gnome
-autoheader
+%{__aclocal} -I %{_aclocaldir}/gnome
+%{__autoheader}
 %{__autoconf}
 %{__automake}
 cd ..
