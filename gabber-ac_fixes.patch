@@ -1,0 +1,107 @@
+--- gabber-0.8.2/configure.in~	Thu Mar 29 03:22:20 2001
++++ gabber-0.8.2/configure.in	Thu Jul  5 13:34:15 2001
+@@ -315,74 +315,6 @@
+     ])
+ fi
+ 
+-dnl ******************************
+-dnl CFLAGS for release and devel versions
+-dnl ******************************
+-AC_ARG_ENABLE(debug,
+-        [  --enable-debug          compile with debugging (for development)],
+-        debug=$enable_debug,
+-	debug=no
+-)
+-AC_MSG_CHECKING(for debugging)
+-if test "x$debug" = xyes; then
+-        AC_MSG_RESULT(yes)
+-        BUILD_TYPE="$BUILD_TYPE Debug"
+-        CFLAGS="$CFLAGS -g"
+-       CXXFLAGS="$CXXFLAGS -g"
+-else
+-        AC_MSG_RESULT(no)
+-       CFLAGS="$CFLAGS -s"
+-       CXXFLAGS="$CXXFLAGS -s"
+-fi
+-
+-AC_ARG_ENABLE(optimize,
+-        [  --enable-optimize       compile with optimizations (not for packaging)],
+-        optimize=$enable_optimize,
+-        optimize=no
+-)
+-
+-AC_MSG_CHECKING(for optimization)
+-if test "x$optimize" = xyes; then
+-        AC_MSG_RESULT(yes)
+-        BUILD_TYPE="$BUILD_TYPE Optimize"
+-        if test "x$GCC" = xyes; then
+-                CFLAGS="$CFLAGS -O6 -ffast-math -funroll-loops -fomit-frame-pointer -fexpensive-optimizations"
+-               CXXFLAGS="$CXX_FLAGS -O6 -ffast-math -funroll-loops -fomit-frame-pointer -fexpensive-optimizations"
+-                AC_MSG_CHECKING(for special compiler settings)
+-                case "${host}" in
+-                        i386-*-*)
+-                                MORE_CFLAGS="-malign-loops=2 -malign-jumps=2 -malign-functions=2"
+-                                ;;
+-                        i486-*-*)
+-                                MORE_CFLAGS="-m486 -malign-loops=2 -malign-jumps=2 -malign-functions=2"
+-                                ;;
+-                        i586-*-*)
+-                                MORE_CFLAGS="-march=pentium -malign-loops=2 -malign-jumps=2 -malign-functions=2"
+-                                ;;
+-                        i686-*-*)
+-                                MORE_CFLAGS="-march=pentiumpro -malign-loops=2 -malign-jumps=2 -malign-functions=2"
+-                                ;;
+-                        *)
+-                                MORE_CFLAGS=""
+-                                ;;
+-                esac
+-                if test "x$MORE_CFLAGS" = x; then
+-                        AC_MSG_RESULT(no)
+-                else
+-                        AC_MSG_RESULT(yes)
+-                        CFLAGS="$CFLAGS $MORE_CFLAGS"
+-                       CXXFLAGS="$CXX_FLAGS $MORE_CXXFLAGS"
+-                fi
+-        else
+-                CFLAGS=-O2
+-               CXX_FLAGS=-02
+-        fi
+-else
+-        AC_MSG_RESULT(no)
+-        CFLAGS="$CFLAGS -O0"
+-       CXX_FLAGS="$CXX_FLAGS -O0"
+-fi
+-
+ dnl **************************************************
+ dnl * OpenSSL check (directory check blatantly ripped
+ dnl * from OpenSSH's configure.in)
+--- gabber-0.8.2/jabberoo/configure.in~	Tue Feb 13 02:05:22 2001
++++ gabber-0.8.2/jabberoo/configure.in	Thu Jul  5 13:41:49 2001
+@@ -20,27 +20,6 @@
+ dnl Checks for library functions.
+ AC_FUNC_MEMCMP
+ 
+-dnl CFLAGS for release and devel versions
+-CFLAGS=""
+-CXXFLAGS=""
+-AC_ARG_ENABLE(debug,
+-        [  --enable-debug          compile with debugging (for development)],
+-        debug=$enable_debug
+-)
+-AC_MSG_CHECKING(for debugging)
+-if test "x$debug" = xyes; then
+-        AC_MSG_RESULT(yes)
+-        BUILD_TYPE="$BUILD_TYPE Debug"
+-        CFLAGS="$CFLAGS -g"
+-	CXXFLAGS="$CXXFLAGS -g"
+-else
+-	CFLAGS="$CFLAGS -O2"
+-	CXXFLAGS="$CXXFLAGS -O2"
+-        AC_MSG_RESULT(no)
+-fi
+-
+-                                               
+-
+ dnl Check for endianess
+ AC_C_BIGENDIAN 
+ 
