@@ -2,28 +2,47 @@
 # Conditional build:
 # _with_ipv6        - with IPv6 support
 #
-
-%define snap 20021025
-
 Summary:	A GNOME Jabber client
 Summary(pl):	Klient Jabber dla GNOME
 Summary(pt_BR):	Um cliente GNOME para o Jabber
 Name:		gabber
-Version:	1.9.0
-Release:	0.%{snap}.1
+Version:	0.8.7
+Release:	4
 License:	GPL
 Group:		Applications/Communications
-Source0:	http://jabberstudio.org/gabber/%{name}-%{version}.%{snap}.tar.gz
+Source0:	http://prdownloads.sourceforge.net/gabber/%{name}-%{version}.tar.gz
+Patch0:		%{name}-DESTDIR.patch
+Patch1:		%{name}-ac_fixes.patch
+Patch2:		%{name}-omf.patch
 URL:		http://gabber.sourceforge.net/
+BuildRequires:	ORBit-devel
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	gal-devel >= 0.19
+BuildRequires:	gdk-pixbuf-gnome-devel
+BuildRequires:	gettext-devel
+BuildRequires:	gnome-libs-devel >= 1.2.13
+BuildRequires:	gnomemm-devel >= 1.2.0
+BuildRequires:	gnome-print-devel
+BuildRequires:	gtk+-devel >= 1.2.5
+BuildRequires:	gtkmm-devel >= 1.2.5
+BuildRequires:	intltool
+BuildRequires:	libglade-gnome-devel >= 0.17
+BuildRequires:	libsigc++1-devel
+BuildRequires:	libunicode-devel
+BuildRequires:	openssl-devel >= 0.9.6a
+BuildRequires:	scrollkeeper
+BuildRequires:	xmms-devel
 Requires(post,postun):	/sbin/ldconfig
 Requires(post,postun):	scrollkeeper
+Requires:	applnk
 Requires:	gnupg
-BuildRequires:	gnomemm-devel >= 1.3.10
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_prefix		/usr/X11R6
-%define		_sysconfdir	/etc/X11/GNOME2
+%define		_sysconfdir	/etc/X11/GNOME
 %define		_mandir		%{_prefix}/man
+%define		_omf_dest_dir	%(scrollkeeper-config --omfdir)
 
 %description
 Gabber is a Gnome client for the distributed Open Source instant
@@ -44,16 +63,27 @@ mesmo tempo fácil de usar.
 
 %prep
 %setup -q
+%patch0 -p1
+%patch1 -p1
+%patch2 -p1
 
 %build
+sed -e s/AM_GNOME_GETTEXT/AM_GNU_GETTEXT/ configure.in > configure.in.tmp
+mv -f configure.in.tmp configure.in
 rm -f missing
-glib-gettextize
-intltoolize
-%{__libtoolize}
-%{__aclocal}
+intltoolize --copy --force
+%{__gettextize}
+%{__aclocal} -I %{_aclocaldir}/gnome
 %{__autoheader}
 %{__autoconf}
 %{__automake}
+cd jabberoo
+rm -f missing
+%{__aclocal} -I %{_aclocaldir}/gnome
+%{__autoheader}
+%{__autoconf}
+%{__automake}
+cd ..
 CXXFLAGS="%{rpmcflags}"
 %configure \
 	--%{!?debug:dis}%{?debug:en}able-debug \
