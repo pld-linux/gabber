@@ -32,7 +32,7 @@ BuildRequires:	intltool
 BuildRequires:	libglade-gnome-devel >= 0.17
 BuildRequires:	libsigc++1-devel
 BuildRequires:	libunicode-devel
-BuildRequires:	openssl-devel >= 0.9.6a
+BuildRequires:	openssl-devel >= 0.9.6m
 BuildRequires:	scrollkeeper
 BuildRequires:	xmms-devel
 Requires(post,postun):	/sbin/ldconfig
