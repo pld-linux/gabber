@@ -1,7 +1,7 @@
 Summary:	A GNOME Jabber client
 Summary(pl):	Klient Jabber dla GNOME
 Name:		gabber
-Version:	0.8.4
+Version:	0.8.5
 Release:	1
 License:	GPL
 Group:		Applications/Communications
@@ -9,24 +9,25 @@ Group(de):	Applikationen/Kommunikation
 Group(pl):	Aplikacje/Komunikacja
 Source0:	http://prdownloads.sourceforge.net/gabber/%{name}-%{version}.tar.gz
 Patch0:		%{name}-DESTDIR.patch
-patch1:		%{name}-ac_fixes.patch
 URL:		http://gabber.sourceforge.net/
 BuildRequires:	ORBit-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
+BuildRequires:	gal-devel >= 0.18
+BuildRequires:	gdk-pixbuf-devel
+BuildRequires:	gettext-devel
 BuildRequires:	gnome-libs-devel >= 1.2.13
 BuildRequires:	gnomemm-devel >= 1.2.0
-BuildRequires:	gettext-devel
+BuildRequires:	gnome-print-devel
 BuildRequires:	gtk+-devel >= 1.2.5
 BuildRequires:	gtkmm-devel >= 1.2.5
-BuildRequires:	libtool
 BuildRequires:	libglade-devel >= 0.17
 BuildRequires:	libsigc++-devel
 BuildRequires:	libunicode-devel
 BuildRequires:	openssl-devel >= 0.9.6a
-BuildRequires:	gal-devel >= 0.3
 BuildRequires:	scrollkeeper
 BuildRequires:	xml-i18n-tools
+BuildRequires:	xmms-devel
 Prereq:		/sbin/ldconfig
 Prereq:		scrollkeeper
 Requires:	applnk
@@ -53,31 +54,31 @@ tym prostym w u¿yciu.
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
 
 %build
-cd jabberoo
-rm missing
-mkdir libsigc++
-libtoolize --copy --force
-gettextize --copy --force
-aclocal -I %{_aclocaldir}/gnome
-autoheader
-autoconf
-automake -a -c
-cd ..
-
-rm missing
-libtoolize --copy --force
+sed -e s/AM_GNOME_GETTEXT/AM_GNU_GETTEXT/ configure.in > configure.in.tmp
+mv -f configure.in.tmp configure.in
+rm -f missing
 xml-i18n-toolize --copy --force
 gettextize --copy --force
 aclocal -I %{_aclocaldir}/gnome
 autoheader
 autoconf
 automake -a -c
+(cd jabberoo
+rm -f missing
+aclocal -I %{_aclocaldir}/gnome
+autoheader
+autoconf
+automake -a -c)
+CXXFLAGS="%{rpmcflags}"
 %configure \
+	--%{?debug:dis}%{!?devbug:en}able-debug \
 	--enable-gnome \
 	--enable-panel \
+	--enable-ssl \
+	--enable-screensaver \
+	--enable-xmms \
 	--disable-perl
 
 %{__make}
@@ -88,7 +89,7 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
 	Applicationsdir=%{_applnkdir}/Network/Communications \
-	omf_dest_dir=%{_omf_dest_dir}/omf/gabber
+	omf_dest_dir=%{_omf_dest_dir}/omf/%{name}
 
 gzip -9nf AUTHORS NEWS README TODO
 
@@ -103,7 +104,7 @@ rm -rf $RPM_BUILD_ROOT
 %files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc *.gz
-%{_sysconfdir}/*/*/*
+%{_sysconfdir}/sound/events/*
 %attr(755,root,root) %{_bindir}/*
 %{_mandir}/man?/*
 %{_applnkdir}/Network/Communications/*.desktop
