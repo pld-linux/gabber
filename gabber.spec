@@ -22,7 +22,7 @@ Requires:	gnupg
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-Gabber is a Gnome client for the distributed Open Source instant
+Gabber is a GNOME client for the distributed Open Source instant
 messaging system called Jabber. Gabber aims to be a fairly complete
 client while remaining easy to use, trying to maintain a balance
 between too many features and being powerful enough.
