@@ -1,3 +1,7 @@
+#
+# Conditional build:
+# _with_ipv6        - with IPv6 support
+#
 Summary:	A GNOME Jabber client
 Summary(pl):	Klient Jabber dla GNOME
 Name:		gabber
@@ -79,6 +83,7 @@ CXXFLAGS="%{rpmcflags}"
 	--enable-ssl \
 	--enable-screensaver \
 	--enable-xmms \
+	%{?_with_ipv6:--enable-ipv6} \
 	--disable-perl
 
 %{__make}
