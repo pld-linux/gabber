@@ -18,7 +18,7 @@ URL:		http://gabber.sourceforge.net/
 Requires(post,postun):	/sbin/ldconfig
 Requires(post,postun):	scrollkeeper
 Requires:	gnupg
-BuildRequires:	libgnomemm-devel >= 1.3.7
+BuildRequires:	gnomemm-devel >= 1.3.10
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_prefix		/usr/X11R6
