@@ -1,6 +1,6 @@
-diff -urN gabber-0.8.2.org/doc/C/Makefile.am gabber-0.8.2/doc/C/Makefile.am
---- gabber-0.8.2.org/doc/C/Makefile.am	Wed Apr 25 01:29:33 2001
-+++ gabber-0.8.2/doc/C/Makefile.am	Wed Apr 25 01:30:27 2001
+diff -urN gabber-0.8.4.org/doc/C/Makefile.am gabber-0.8.4/doc/C/Makefile.am
+--- gabber-0.8.4.org/doc/C/Makefile.am	Wed Aug 29 23:55:26 2001
++++ gabber-0.8.4/doc/C/Makefile.am	Thu Aug 30 00:42:43 2001
 @@ -41,21 +41,21 @@
  ## when we make dist, we include the generated HTML so people don't
  ## have to have the docbook tools
@@ -31,3 +31,15 @@ diff -urN gabber-0.8.2.org/doc/C/Makefile.am gabber-0.8.2/doc/C/Makefile.am
  	done
  
  gabber.ps: gabber.sgml
+diff -urN gabber-0.8.4.org/pixmaps/Makefile.am gabber-0.8.4/pixmaps/Makefile.am
+--- gabber-0.8.4.org/pixmaps/Makefile.am	Wed Aug 29 23:55:26 2001
++++ gabber-0.8.4/pixmaps/Makefile.am	Thu Aug 30 00:42:59 2001
+@@ -67,7 +67,7 @@
+ glade_DATA = $(glade_pixmaps)
+ 
+ install-exec-hook: 
+-	(cd $(datadir)/gabber;	\
++	(cd $(DESTDIR)$(datadir)/gabber;	\
+ 	ln -sf ../pixmaps/gnome-info.png gnome-info.png;		\
+ 	ln -sf ../pixmaps/gnome-lockscreen.png gnome-locksreen.png;	\
+ 	ln -sf ../pixmaps/gnome-globe.png gnome-globe.png;		\
