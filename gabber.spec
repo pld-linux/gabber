@@ -12,7 +12,8 @@ Release:	0.1
 License:	GPL
 Group:		Applications/Communications
 # take source 0 from cvs, please
-Source0:	http://www.jabberstudio.org/projects/gabber/releases/download.php?file=%{name}-%{version}.tar.gz
+Source0:	%{name}-%{version}.tar.gz
+#Source0:	http://www.jabberstudio.org/projects/gabber/releases/download.php?file=%{name}-%{version}.tar.gz
 URL:		http://gabber.sourceforge.net/
 Requires:	gnupg
 BuildRequires:	gconfmm-devel >= 2.0.0
@@ -42,14 +43,6 @@ mesmo tempo fácil de usar.
 %setup -q
 
 %build
-rm -f missing
-glib-gettextize
-intltoolize
-%{__libtoolize}
-%{__aclocal}
-%{__autoheader}
-%{__autoconf}
-%{__automake}
 CXXFLAGS="%{rpmcflags}"
 %configure \
 	--%{!?debug:dis}%{?debug:en}able-debug \
@@ -64,25 +57,19 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-#%find_lang %{name} --with-gnome --all-name
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %post
-/usr/bin/scrollkeeper-update
 %gconf_schema_install
 
-%postun -p /usr/bin/scrollkeeper-update
-
-#%files -f %{name}.lang
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS NEWS README TODO
 %{_sysconfdir}/gconf/schemas/*
 %attr(755,root,root) %{_bindir}/*
-%attr(755,root,root) %{_libdir}/*.so*
-%{_libdir}/*.la
+%attr(755,root,root) %{_libdir}/%{name}/*.so
+%{_libdir}/%{name}/*.la
 %{_datadir}/%{name}
 %{_datadir}/applications/*
 %{_pixmapsdir}/*
