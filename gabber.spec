@@ -72,7 +72,7 @@ gettextize --copy --force
 aclocal -I %{_aclocaldir}/gnome
 autoheader
 autoconf
-automake -a -c
+automake -a -c -f
 (cd jabberoo
 rm -f missing
 aclocal -I %{_aclocaldir}/gnome
