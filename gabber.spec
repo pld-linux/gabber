@@ -11,9 +11,8 @@ Version:	1.9.0
 Release:	0.1
 License:	GPL
 Group:		Applications/Communications
-# take source 0 from cvs, please
-Source0:	%{name}-%{version}.tar.gz
-#Source0:	http://www.jabberstudio.org/projects/gabber/releases/download.php?file=%{name}-%{version}.tar.gz
+# Source0-md5:	6278df1e11f5e3a0c07f7b917d285e30
+Source0:	http://www.jabberstudio.org/files/gabber/%{name}-%{version}.tar.gz
 URL:		http://gabber.sourceforge.net/
 Requires:	gnupg
 BuildRequires:	gconfmm-devel >= 2.0.0
@@ -55,7 +54,8 @@ CXXFLAGS="%{rpmcflags}"
 rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT
+	DESTDIR=$RPM_BUILD_ROOT \
+	GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1
 
 %clean
 rm -rf $RPM_BUILD_ROOT
