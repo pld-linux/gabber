@@ -13,7 +13,9 @@ Version:	1.9.0
 Release:	0.%{snap}.1
 License:	GPL
 Group:		Applications/Communications
-Source0:	http://jabberstudio.org/gabber/%{name}-%{version}.%{snap}.tar.gz
+# take source 0 from cvs, please
+Source0:	%{name}-%{version}.%{snap}.tar.gz
+#Source0:	http://jabberstudio.org/gabber/%{name}-%{version}.tar.gz
 URL:		http://gabber.sourceforge.net/
 Requires(post,postun):	/sbin/ldconfig
 Requires(post,postun):	scrollkeeper
