@@ -7,7 +7,7 @@ Summary(pl):	Klient Jabber dla GNOME
 Summary(pt_BR):	Um cliente GNOME para o Jabber
 Name:		gabber
 Version:	0.8.7
-Release:	1.1
+Release:	2
 License:	GPL
 Group:		Applications/Communications
 Source0:	http://prdownloads.sourceforge.net/gabber/%{name}-%{version}.tar.gz
@@ -99,7 +99,7 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
 	Applicationsdir=%{_applnkdir}/Network/Communications \
-	omf_dest_dir=%{_omf_dest_dir}/omf/%{name}
+	omf_dest_dir=%{_omf_dest_dir}/%{name}
 
 gzip -9nf AUTHORS NEWS README TODO
 
@@ -119,6 +119,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man?/*
 %{_applnkdir}/Network/Communications/*.desktop
 %{_datadir}/%{name}
-%{_omf_dest_dir}/omf/%{name}
+%{_omf_dest_dir}/%{name}
 %{_pixmapsdir}/*
 %{_datadir}/sounds/*
