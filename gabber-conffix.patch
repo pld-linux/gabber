@@ -1,0 +1,150 @@
+diff -urN Gabber-1.9.4.orig/configure Gabber-1.9.4/configure
+--- Gabber-1.9.4.orig/configure	2004-06-14 10:17:54.322401040 +0200
++++ Gabber-1.9.4/configure	2004-06-14 10:56:16.095478344 +0200
+@@ -21051,23 +21051,23 @@
+   else
+      PKG_CONFIG_MIN_VERSION=0.9.0
+      if $PKG_CONFIG --atleast-pkgconfig-version $PKG_CONFIG_MIN_VERSION; then
+-        echo "$as_me:$LINENO: checking for gtkmm-2.0 gconfmm-2.0 libglademm-2.0" >&5
+-echo $ECHO_N "checking for gtkmm-2.0 gconfmm-2.0 libglademm-2.0... $ECHO_C" >&6
++        echo "$as_me:$LINENO: checking for gtkmm-2.4 gconfmm-2.6 libglademm-2.4" >&5
++echo $ECHO_N "checking for gtkmm-2.4 gconfmm-2.6 libglademm-2.4... $ECHO_C" >&6
+ 
+-        if $PKG_CONFIG --exists "gtkmm-2.0 gconfmm-2.0 libglademm-2.0" ; then
++        if $PKG_CONFIG --exists "gtkmm-2.4 gconfmm-2.6 libglademm-2.4" ; then
+             echo "$as_me:$LINENO: result: yes" >&5
+ echo "${ECHO_T}yes" >&6
+             succeeded=yes
+ 
+             echo "$as_me:$LINENO: checking DEPS_CFLAGS" >&5
+ echo $ECHO_N "checking DEPS_CFLAGS... $ECHO_C" >&6
+-            DEPS_CFLAGS=`$PKG_CONFIG --cflags "gtkmm-2.0 gconfmm-2.0 libglademm-2.0"`
++            DEPS_CFLAGS=`$PKG_CONFIG --cflags "gtkmm-2.4 gconfmm-2.6 libglademm-2.4"`
+             echo "$as_me:$LINENO: result: $DEPS_CFLAGS" >&5
+ echo "${ECHO_T}$DEPS_CFLAGS" >&6
+ 
+             echo "$as_me:$LINENO: checking DEPS_LIBS" >&5
+ echo $ECHO_N "checking DEPS_LIBS... $ECHO_C" >&6
+-            DEPS_LIBS=`$PKG_CONFIG --libs "gtkmm-2.0 gconfmm-2.0 libglademm-2.0"`
++            DEPS_LIBS=`$PKG_CONFIG --libs "gtkmm-2.4 gconfmm-2.6 libglademm-2.4"`
+             echo "$as_me:$LINENO: result: $DEPS_LIBS" >&5
+ echo "${ECHO_T}$DEPS_LIBS" >&6
+         else
+@@ -21075,7 +21075,7 @@
+             DEPS_LIBS=""
+             ## If we have a custom action on failure, don't print errors, but
+             ## do set a variable so people can do so.
+-            DEPS_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors "gtkmm-2.0 gconfmm-2.0 libglademm-2.0"`
++            DEPS_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors "gtkmm-2.4 gconfmm-2.6 libglademm-2.4"`
+             echo $DEPS_PKG_ERRORS
+         fi
+ 
+@@ -21090,8 +21090,8 @@
+   if test $succeeded = yes; then
+      :
+   else
+-     { { echo "$as_me:$LINENO: error: Library requirements (gtkmm-2.0 gconfmm-2.0 libglademm-2.0) not met; consider adjusting the PKG_CONFIG_PATH environment variable if your libraries are in a nonstandard prefix so pkg-config can find them." >&5
+-echo "$as_me: error: Library requirements (gtkmm-2.0 gconfmm-2.0 libglademm-2.0) not met; consider adjusting the PKG_CONFIG_PATH environment variable if your libraries are in a nonstandard prefix so pkg-config can find them." >&2;}
++     { { echo "$as_me:$LINENO: error: Library requirements (gtkmm-2.4 gconfmm-2.6 libglademm-2.4) not met; consider adjusting the PKG_CONFIG_PATH environment variable if your libraries are in a nonstandard prefix so pkg-config can find them." >&5
++echo "$as_me: error: Library requirements (gtkmm-2.4 gconfmm-2.6 libglademm-2.4) not met; consider adjusting the PKG_CONFIG_PATH environment variable if your libraries are in a nonstandard prefix so pkg-config can find them." >&2;}
+    { (exit 1); exit 1; }; }
+   fi
+ 
+@@ -22838,23 +22838,23 @@
+   else
+      PKG_CONFIG_MIN_VERSION=0.9.0
+      if $PKG_CONFIG --atleast-pkgconfig-version $PKG_CONFIG_MIN_VERSION; then
+-        echo "$as_me:$LINENO: checking for gconfmm-2.0" >&5
+-echo $ECHO_N "checking for gconfmm-2.0... $ECHO_C" >&6
++        echo "$as_me:$LINENO: checking for gconfmm-2.6" >&5
++echo $ECHO_N "checking for gconfmm-2.6... $ECHO_C" >&6
+ 
+-        if $PKG_CONFIG --exists "gconfmm-2.0" ; then
++        if $PKG_CONFIG --exists "gconfmm-2.6" ; then
+             echo "$as_me:$LINENO: result: yes" >&5
+ echo "${ECHO_T}yes" >&6
+             succeeded=yes
+ 
+             echo "$as_me:$LINENO: checking PLATFORM_CFLAGS" >&5
+ echo $ECHO_N "checking PLATFORM_CFLAGS... $ECHO_C" >&6
+-            PLATFORM_CFLAGS=`$PKG_CONFIG --cflags "gconfmm-2.0"`
++            PLATFORM_CFLAGS=`$PKG_CONFIG --cflags "gconfmm-2.6"`
+             echo "$as_me:$LINENO: result: $PLATFORM_CFLAGS" >&5
+ echo "${ECHO_T}$PLATFORM_CFLAGS" >&6
+ 
+             echo "$as_me:$LINENO: checking PLATFORM_LIBS" >&5
+ echo $ECHO_N "checking PLATFORM_LIBS... $ECHO_C" >&6
+-            PLATFORM_LIBS=`$PKG_CONFIG --libs "gconfmm-2.0"`
++            PLATFORM_LIBS=`$PKG_CONFIG --libs "gconfmm-2.6"`
+             echo "$as_me:$LINENO: result: $PLATFORM_LIBS" >&5
+ echo "${ECHO_T}$PLATFORM_LIBS" >&6
+         else
+@@ -22862,7 +22862,7 @@
+             PLATFORM_LIBS=""
+             ## If we have a custom action on failure, don't print errors, but
+             ## do set a variable so people can do so.
+-            PLATFORM_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors "gconfmm-2.0"`
++            PLATFORM_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors "gconfmm-2.6"`
+             echo $PLATFORM_PKG_ERRORS
+         fi
+ 
+@@ -22877,8 +22877,8 @@
+   if test $succeeded = yes; then
+      :
+   else
+-     { { echo "$as_me:$LINENO: error: Library requirements (gconfmm-2.0) not met; consider adjusting the PKG_CONFIG_PATH environment variable if your libraries are in a nonstandard prefix so pkg-config can find them." >&5
+-echo "$as_me: error: Library requirements (gconfmm-2.0) not met; consider adjusting the PKG_CONFIG_PATH environment variable if your libraries are in a nonstandard prefix so pkg-config can find them." >&2;}
++     { { echo "$as_me:$LINENO: error: Library requirements (gconfmm-2.6) not met; consider adjusting the PKG_CONFIG_PATH environment variable if your libraries are in a nonstandard prefix so pkg-config can find them." >&5
++echo "$as_me: error: Library requirements (gconfmm-2.46) not met; consider adjusting the PKG_CONFIG_PATH environment variable if your libraries are in a nonstandard prefix so pkg-config can find them." >&2;}
+    { (exit 1); exit 1; }; }
+   fi
+ 
+@@ -22938,23 +22938,23 @@
+   else
+      PKG_CONFIG_MIN_VERSION=0.9.0
+      if $PKG_CONFIG --atleast-pkgconfig-version $PKG_CONFIG_MIN_VERSION; then
+-        echo "$as_me:$LINENO: checking for gconfmm-2.0" >&5
+-echo $ECHO_N "checking for gconfmm-2.0... $ECHO_C" >&6
++        echo "$as_me:$LINENO: checking for gconfmm-2.6" >&5
++echo $ECHO_N "checking for gconfmm-2.6... $ECHO_C" >&6
+ 
+-        if $PKG_CONFIG --exists "gconfmm-2.0" ; then
++        if $PKG_CONFIG --exists "gconfmm-2.6" ; then
+             echo "$as_me:$LINENO: result: yes" >&5
+ echo "${ECHO_T}yes" >&6
+             succeeded=yes
+ 
+             echo "$as_me:$LINENO: checking PLATFORM_CFLAGS" >&5
+ echo $ECHO_N "checking PLATFORM_CFLAGS... $ECHO_C" >&6
+-            PLATFORM_CFLAGS=`$PKG_CONFIG --cflags "gconfmm-2.0"`
++            PLATFORM_CFLAGS=`$PKG_CONFIG --cflags "gconfmm-2.6"`
+             echo "$as_me:$LINENO: result: $PLATFORM_CFLAGS" >&5
+ echo "${ECHO_T}$PLATFORM_CFLAGS" >&6
+ 
+             echo "$as_me:$LINENO: checking PLATFORM_LIBS" >&5
+ echo $ECHO_N "checking PLATFORM_LIBS... $ECHO_C" >&6
+-            PLATFORM_LIBS=`$PKG_CONFIG --libs "gconfmm-2.0"`
++            PLATFORM_LIBS=`$PKG_CONFIG --libs "gconfmm-2.6"`
+             echo "$as_me:$LINENO: result: $PLATFORM_LIBS" >&5
+ echo "${ECHO_T}$PLATFORM_LIBS" >&6
+         else
+@@ -22962,7 +22962,7 @@
+             PLATFORM_LIBS=""
+             ## If we have a custom action on failure, don't print errors, but
+             ## do set a variable so people can do so.
+-            PLATFORM_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors "gconfmm-2.0"`
++            PLATFORM_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors "gconfmm-2.6"`
+             echo $PLATFORM_PKG_ERRORS
+         fi
+ 
+@@ -22977,8 +22977,8 @@
+   if test $succeeded = yes; then
+      :
+   else
+-     { { echo "$as_me:$LINENO: error: Library requirements (gconfmm-2.0) not met; consider adjusting the PKG_CONFIG_PATH environment variable if your libraries are in a nonstandard prefix so pkg-config can find them." >&5
+-echo "$as_me: error: Library requirements (gconfmm-2.0) not met; consider adjusting the PKG_CONFIG_PATH environment variable if your libraries are in a nonstandard prefix so pkg-config can find them." >&2;}
++     { { echo "$as_me:$LINENO: error: Library requirements (gconfmm-2.6) not met; consider adjusting the PKG_CONFIG_PATH environment variable if your libraries are in a nonstandard prefix so pkg-config can find them." >&5
++echo "$as_me: error: Library requirements (gconfmm-2.6) not met; consider adjusting the PKG_CONFIG_PATH environment variable if your libraries are in a nonstandard prefix so pkg-config can find them." >&2;}
+    { (exit 1); exit 1; }; }
+   fi
+ 
