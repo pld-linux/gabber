@@ -4,13 +4,26 @@
 #
 Summary:	A GNOME Jabber client
 Summary(pl):	Klient Jabber dla GNOME
+Summary(pt_BR):	Um cliente GNOME para o Jabber
 Name:		gabber
 Version:	0.8.6
-Release:	2
+Release:	3
 License:	GPL
 Group:		Applications/Communications
+Group(cs):	Aplikace/Komunikace
+Group(da):	Programmer/Kommunikation
 Group(de):	Applikationen/Kommunikation
+Group(es):	Aplicaciones/Comunicaciones
+Group(fr):	Applications/Transmissions
+Group(is):	Forrit/Samskipti
+Group(it):	Applicazioni/Comunicazioni
+Group(ja):	¥¢¥×¥ê¥±¡¼¥·¥ç¥ó/ÄÌ¿®
+Group(no):	Applikasjoner/Kommunikasjon
 Group(pl):	Aplikacje/Komunikacja
+Group(pt):	Aplicações/Comunicações
+Group(ru):	ðÒÉÌÏÖÅÎÉÑ/ó×ÑÚØ
+Group(sl):	Programi/Komunikacije
+Group(sv):	Tillämpningar/Kommunikation
 Source0:	http://prdownloads.sourceforge.net/gabber/%{name}-%{version}.tar.gz
 Patch0:		%{name}-DESTDIR.patch
 URL:		http://gabber.sourceforge.net/
@@ -54,6 +67,11 @@ Gabber jest klientem GNOME dla dystrybuowanego na zasadach Open Source
 systemu Natychmiastowych Wiadomo¶ci (IM - Instant Messaging) o nazwie
 Jabber. Gabber jest kompletnym klientem systemu Jabber pozostaj±c przy
 tym prostym w u¿yciu.
+
+%description -l pt_BR
+Gabber é um cliente GNOME para o sistema distribuído de mensagens
+instantâneas Jabber. Gabber é um cliente completo, sendo poderoso e ao
+mesmo tempo fácil de usar.
 
 %prep
 %setup -q
