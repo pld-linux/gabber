@@ -1,0 +1,68 @@
+--- gabber-1.9.0/src/TCPTransmitter.cc.orig	2003-06-08 22:15:19.000000000 +0000
++++ gabber-1.9.0/src/TCPTransmitter.cc	2003-10-27 15:31:33.000000000 +0000
+@@ -386,7 +386,7 @@
+ 
+ void TCPTransmitter::_send(send_data_buf* data)
+ {
+-     guint bytes_written = 0;
++     gsize bytes_written = 0;
+      // Write the data to the socket using glib
+      GError *err = NULL;
+      GIOStatus result = G_IO_STATUS_NORMAL;
+@@ -553,7 +553,7 @@
+     case G_IO_IN:
+     {
+         // Read the data from the socket and push it into the session
+-        guint bytes_read = 2047;
++        gsize bytes_read = 2047;
+         guint bytes_count = 0;
+         char buf[2048];
+         GError *err = NULL;
+@@ -767,7 +767,7 @@
+ 	       guint buf_length = sizeof(struct in_addr);
+ #endif
+ 	       gchar * buffer = new gchar[buf_length];
+-	       guint bytes_read = 0;
++	       gsize bytes_read = 0;
+             GError *err = NULL;
+             g_io_channel_set_encoding(iochannel, NULL, &err);
+ 	       GIOStatus result = g_io_channel_read_chars(iochannel, buffer,
+@@ -797,7 +797,7 @@
+ #endif
+ 		    //when this happens wait a second and try again
+ 		    sleep(1);
+-		    guint next_bytes_read;
++		    gsize next_bytes_read;
+ 		    result = g_io_channel_read_chars(iochannel, &buffer[bytes_read],
+                         buf_length - bytes_read, &next_bytes_read, &err);
+ 		    if (result == G_IO_STATUS_NORMAL)
+@@ -1936,7 +1936,7 @@
+ 
+ void TCPTransmitter::proxySendHead(const string& header)
+ {
+-     guint bytes_written;
++     gsize bytes_written;
+      GError *err = NULL;
+ 
+      gchar *sendbuffer = new gchar[header.size()];
+--- gabber-1.9.0/src/Singleton.hh.orig	2003-06-03 17:57:11.000000000 +0000
++++ gabber-1.9.0/src/Singleton.hh	2003-10-27 15:24:35.000000000 +0000
+@@ -11,6 +11,7 @@
+ #define GABBER_SINGLETON_H
+ 
+ #include <assert.h>
++#include <stddef.h>
+ 
+ namespace Gabber {
+ 
+@@ -27,8 +28,8 @@
+     Singleton( void )
+     {
+         assert( !ms_Singleton );
+-        int offset = (int)(T*)1 - (int)(Singleton <T>*)(T*)1;
+-        ms_Singleton = (T*)((int)this + offset);
++        size_t offset = (size_t)(T*)1 - (size_t)(Singleton <T>*)(T*)1;
++        ms_Singleton = (T*)((size_t)this + offset);
+     }
+     ~Singleton( void )
+     {  assert( ms_Singleton );  ms_Singleton = 0;  }
