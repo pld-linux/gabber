@@ -3,7 +3,7 @@
 # _with_ipv6        - with IPv6 support
 #
 
-%define snap 20021025
+%define snap 20030506
 
 Summary:	A GNOME Jabber client
 Summary(pl):	Klient Jabber dla GNOME
@@ -14,18 +14,17 @@ Release:	0.%{snap}.1
 License:	GPL
 Group:		Applications/Communications
 # take source 0 from cvs, please
-Source0:	%{name}-%{version}.%{snap}.tar.gz
+Source0:	%{name}-%{version}.%{snap}.tar.bz2
 #Source0:	http://jabberstudio.org/gabber/%{name}-%{version}.tar.gz
 URL:		http://gabber.sourceforge.net/
 Requires(post,postun):	/sbin/ldconfig
 Requires(post,postun):	scrollkeeper
 Requires:	gnupg
-BuildRequires:	gnomemm-devel >= 1.3.10
+BuildRequires:	gconfmm-devel >= 2.0.0
+BuildRequires:	jabberoo-devel >= 1.1.3
+BuildRequires:	libglademm-devel >= 2.0.0
+BuildRequires:	libsigc++-devel >= 1.2.3
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-
-%define		_prefix		/usr/X11R6
-%define		_sysconfdir	/etc/X11/GNOME2
-%define		_mandir		%{_prefix}/man
 
 %description
 Gabber is a Gnome client for the distributed Open Source instant
@@ -59,13 +58,8 @@ intltoolize
 CXXFLAGS="%{rpmcflags}"
 %configure \
 	--%{!?debug:dis}%{?debug:en}able-debug \
-	--enable-gnome \
-	--enable-panel \
-	--enable-ssl \
-	--enable-screensaver \
-	--enable-xmms \
-	%{?_with_ipv6:--enable-ipv6} \
-	--disable-perl
+	--disable-schemas-install \
+	%{?_with_ipv6:--enable-ipv6}
 
 %{__make}
 
@@ -73,26 +67,27 @@ CXXFLAGS="%{rpmcflags}"
 rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT \
-	Applicationsdir=%{_applnkdir}/Network/Communications \
-	omf_dest_dir=%{_omf_dest_dir}/%{name}
+	DESTDIR=$RPM_BUILD_ROOT
 
-%find_lang %{name} --with-gnome --all-name
+#%find_lang %{name} --with-gnome --all-name
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post	-p /usr/bin/scrollkeeper-update
+%post
+/usr/bin/scrollkeeper-update
+%gconf_schema_install
+
 %postun -p /usr/bin/scrollkeeper-update
 
-%files -f %{name}.lang
+#%files -f %{name}.lang
+%files
 %defattr(644,root,root,755)
 %doc AUTHORS NEWS README TODO
-%{_sysconfdir}/sound/events/*
+%{_sysconfdir}/gconf/schemas/*
 %attr(755,root,root) %{_bindir}/*
-%{_mandir}/man?/*
-%{_applnkdir}/Network/Communications/*.desktop
+%attr(755,root,root) %{_libdir}/*.so*
+%{_libdir}/*.la
 %{_datadir}/%{name}
-%{_omf_dest_dir}/%{name}
+%{_datadir}/applications/*
 %{_pixmapsdir}/*
-%{_datadir}/sounds/*
