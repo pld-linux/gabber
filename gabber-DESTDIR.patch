@@ -1,25 +1,9 @@
-diff -urN gabber-0.8.4.org/doc/C/Makefile.am gabber-0.8.4/doc/C/Makefile.am
---- gabber-0.8.4.org/doc/C/Makefile.am	Wed Aug 29 23:55:26 2001
-+++ gabber-0.8.4/doc/C/Makefile.am	Thu Aug 30 00:42:43 2001
-@@ -41,21 +41,21 @@
- ## when we make dist, we include the generated HTML so people don't
- ## have to have the docbook tools
- dist-hook:
--	mkdir $(distdir)/gabber $(distdir)/gabber/stylesheet-images
--	-cp gabber/*.html  $(distdir)/gabber
--	-cp gabber/*.css $(distdir)/gabber
--	-cp gabber/stylesheet-images/*.* $(distdir)/gabber/stylesheet-images
--	-cp *.png $(distdir)/
-+	mkdir $(distdir)/gabber $(DESTDIR)$(distdir)/gabber/stylesheet-images
-+	-cp gabber/*.html  $(DESTDIR)$(distdir)/gabber
-+	-cp gabber/*.css $(DESTDIR)$(distdir)/gabber
-+	-cp gabber/stylesheet-images/*.* $(DESTDIR)$(distdir)/gabber/stylesheet-images
-+	-cp *.png $(DESTDIR)$(distdir)/
- 
- install-data-local: index.html
--	$(mkinstalldirs) $(gabber_helpdir)/stylesheet-images
-+	$(mkinstalldirs) $(DESTDIR)$(gabber_helpdir)/stylesheet-images
- 	-for file in $(srcdir)/gabber/*.html $(srcdir)/gabber/*.css $(srcdir)/*.png; do \
+diff -durN gabber-0.8.6.orig/doc/C/Makefile.am gabber-0.8.6/doc/C/Makefile.am
+--- gabber-0.8.6.orig/doc/C/Makefile.am	Wed Jan  2 21:45:03 2002
++++ gabber-0.8.6/doc/C/Makefile.am	Sat Jan 12 13:13:50 2002
+@@ -51,11 +51,11 @@
+ 	$(mkinstalldirs) $(gabber_helpdir)/stylesheet-images
+ 	-for file in $(SGML_FILES) $(srcdir)/gabber/*.html $(srcdir)/gabber/*.css $(srcdir)/*.png; do \
  	basefile=`echo $$file | sed -e 's,^.*/,,'`; \
 -	$(INSTALL_DATA) $(srcdir)/$$file $(gabber_helpdir)/$$basefile; \
 +	$(INSTALL_DATA) $(srcdir)/$$file $(DESTDIR)$(gabber_helpdir)/$$basefile; \
@@ -30,11 +14,11 @@ diff -urN gabber-0.8.4.org/doc/C/Makefile.am gabber-0.8.4/doc/C/Makefile.am
 +	$(INSTALL_DATA) $(srcdir)/$$file $(DESTDIR)$(gabber_helpdir)/stylesheet-images/$$basefile; \
  	done
  
- gabber.ps: gabber.sgml
-diff -urN gabber-0.8.4.org/pixmaps/Makefile.am gabber-0.8.4/pixmaps/Makefile.am
---- gabber-0.8.4.org/pixmaps/Makefile.am	Wed Aug 29 23:55:26 2001
-+++ gabber-0.8.4/pixmaps/Makefile.am	Thu Aug 30 00:42:59 2001
-@@ -67,7 +67,7 @@
+ gabber.ps: $(SGML_FILES)
+diff -durN gabber-0.8.6.orig/pixmaps/Makefile.am gabber-0.8.6/pixmaps/Makefile.am
+--- gabber-0.8.6.orig/pixmaps/Makefile.am	Sun Nov  4 00:10:40 2001
++++ gabber-0.8.6/pixmaps/Makefile.am	Sat Jan 12 13:14:46 2002
+@@ -72,7 +72,7 @@
  glade_DATA = $(glade_pixmaps)
  
  install-exec-hook: 
