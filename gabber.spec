@@ -1,8 +1,8 @@
 Summary:	A GNOME Jabber client
 Summary(pl):	Klient Jabber dla GNOME
 Name:		gabber
-Version:	0.8.2
-Release:	5
+Version:	0.8.4
+Release:	1
 License:	GPL
 Group:		Applications/Communications
 Group(de):	Applikationen/Kommunikation
@@ -18,12 +18,13 @@ BuildRequires:	gnome-libs-devel >= 1.2.13
 BuildRequires:	gnomemm-devel >= 1.2.0
 BuildRequires:	gettext-devel
 BuildRequires:	gtk+-devel >= 1.2.5
-BuildRequires:	gtkmm-devel >= 1.1.12
+BuildRequires:	gtkmm-devel >= 1.2.5
 BuildRequires:	libtool
-BuildRequires:	libglade-devel
+BuildRequires:	libglade-devel >= 0.17
 BuildRequires:	libsigc++-devel
 BuildRequires:	libunicode-devel
 BuildRequires:	openssl-devel >= 0.9.6a
+BuildRequires:	gal-devel >= 0.3
 BuildRequires:	scrollkeeper
 BuildRequires:	xml-i18n-tools
 Prereq:		/sbin/ldconfig
@@ -55,20 +56,21 @@ tym prostym w u¿yciu.
 %patch1 -p1
 
 %build
-(cd jabberoo
+cd jabberoo
 rm missing
 libtoolize --copy --force
 gettextize --copy --force
-aclocal
+aclocal -I %{_aclocaldir}/gnome
 autoheader
 autoconf
-automake -a -c)
+automake -a -c
+cd ..
 
 rm missing
 libtoolize --copy --force
 xml-i18n-toolize --copy --force
 gettextize --copy --force
-aclocal -I macros
+aclocal -I %{_aclocaldir}/gnome
 autoheader
 autoconf
 automake -a -c
@@ -102,6 +104,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc *.gz
 %{_sysconfdir}/*/*/*
 %attr(755,root,root) %{_bindir}/*
+%{_mandir}/man?/*
 %{_applnkdir}/Network/Communications/*.desktop
 %{_datadir}/%{name}
 %{_omf_dest_dir}/omf/%{name}
