@@ -2,42 +2,24 @@
 # Conditional build:
 # _with_ipv6        - with IPv6 support
 #
+
 Summary:	A GNOME Jabber client
 Summary(pl):	Klient Jabber dla GNOME
 Summary(pt_BR):	Um cliente GNOME para o Jabber
 Name:		gabber
-Version:	0.8.8
-Release:	1
+Version:	1.9.0
+Release:	0.1
 License:	GPL
 Group:		Applications/Communications
-# Source0-md5:	e0748960c47982c1d6d17525c42efe41
-Source0:	http://dl.sourceforge.net/gabber/%{name}-%{version}.tar.gz
-Patch0:		%{name}-DESTDIR.patch
-Patch1:		%{name}-ac_fixes.patch
-Patch2:		%{name}-omf.patch
+# take source 0 from cvs, please
+Source0:	http://www.jabberstudio.org/projects/gabber/releases/download.php?file=%{name}-%{version}.tar.gz
 URL:		http://gabber.sourceforge.net/
-BuildRequires:	ORBit-devel
-BuildRequires:	gal-devel >= 0.19
-BuildRequires:	gdk-pixbuf-gnome-devel
-BuildRequires:	gettext-devel
-BuildRequires:	gnome-libs-devel >= 1.2.13
-BuildRequires:	gnomemm-devel >= 1.2.0
-BuildRequires:	gnome-print-devel
-BuildRequires:	gtk+-devel >= 1.2.5
-BuildRequires:	gtkmm-devel >= 1.2.5
-BuildRequires:	intltool
-BuildRequires:	libglade-gnome-devel >= 0.17
-BuildRequires:	libsigc++1-devel
-BuildRequires:	libunicode-devel
-BuildRequires:	openssl-devel >= 0.9.7
-BuildRequires:	scrollkeeper
-BuildRequires:	xmms-devel
-Requires:	applnk
 Requires:	gnupg
+BuildRequires:	gconfmm-devel >= 2.0.0
+BuildRequires:	jabberoo-devel >= 1.9.0.1
+BuildRequires:	libglademm-devel >= 2.0.0
+BuildRequires:	libsigc++-devel >= 1.2.3
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-
-%define		_sysconfdir	/etc/X11/GNOME
-%define		_omf_dest_dir	%(scrollkeeper-config --omfdir)
 
 %description
 Gabber is a Gnome client for the distributed Open Source instant
@@ -58,21 +40,21 @@ mesmo tempo fácil de usar.
 
 %prep
 %setup -q
-#%patch0 -p1
-#%patch1 -p1
-#%patch2 -p1
 
 %build
+rm -f missing
+glib-gettextize
+intltoolize
+%{__libtoolize}
+%{__aclocal}
+%{__autoheader}
+%{__autoconf}
+%{__automake}
 CXXFLAGS="%{rpmcflags}"
 %configure \
 	--%{!?debug:dis}%{?debug:en}able-debug \
-	--enable-gnome \
-	--enable-panel \
-	--enable-ssl \
-	--enable-screensaver \
-	--enable-xmms \
-	%{?_with_ipv6:--enable-ipv6} \
-	--disable-perl
+	--disable-schemas-install \
+	%{?_with_ipv6:--enable-ipv6}
 
 %{__make}
 
@@ -80,26 +62,27 @@ CXXFLAGS="%{rpmcflags}"
 rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT \
-	Applicationsdir=%{_applnkdir}/Network/Communications \
-	omf_dest_dir=%{_omf_dest_dir}/%{name}
+	DESTDIR=$RPM_BUILD_ROOT
 
-%find_lang %{name} --with-gnome --all-name
+#%find_lang %{name} --with-gnome --all-name
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post	-p /usr/bin/scrollkeeper-update
+%post
+/usr/bin/scrollkeeper-update
+%gconf_schema_install
+
 %postun -p /usr/bin/scrollkeeper-update
 
-%files -f %{name}.lang
+#%files -f %{name}.lang
+%files
 %defattr(644,root,root,755)
 %doc AUTHORS NEWS README TODO
-%{_sysconfdir}/sound/events/*
+%{_sysconfdir}/gconf/schemas/*
 %attr(755,root,root) %{_bindir}/*
-%{_mandir}/man?/*
-%{_applnkdir}/Network/Communications/*.desktop
+%attr(755,root,root) %{_libdir}/*.so*
+%{_libdir}/*.la
 %{_datadir}/%{name}
-%{_omf_dest_dir}/%{name}
+%{_datadir}/applications/*
 %{_pixmapsdir}/*
-%{_datadir}/sounds/*
