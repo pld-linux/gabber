@@ -1,0 +1,20 @@
+--- gabber-0.8.7/configure.in~	Wed Sep 25 18:30:33 2002
++++ gabber-0.8.7/configure.in	Wed Sep 25 18:30:33 2002
+@@ -6,17 +6,6 @@
+ AC_PREFIX_DEFAULT(/usr/local)
+ AM_PROG_XML_I18N_TOOLS
+ 
+-dnl Pick up the Gnome macros.
+-if test -z "$ACLOCAL_FLAGS" ; then
+-  if test -d "$acldir/gnome-macros" -a -r "$acldir/gnome-macros/autogen.sh" ; then
+-    AM_ACLOCAL_INCLUDE($acldir/gnome-macros)
+-   elif test -d "$acldir/gnome" -a -r "$acldir/gnome/autogen.sh" ; then
+-     AM_ACLOCAL_INCLUDE($acldir/gnome)
+-   elif test -d "$srcdir/macros" -a -r "$srcdir/macros/autogen.sh" ; then
+-     AM_ACLOCAL_INCLUDE($srcdir/macros)
+-   fi
+-fi
+-
+ GNOME_COMMON_INIT
+ 
+ GNOME_INIT
