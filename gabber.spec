@@ -8,6 +8,7 @@ Group:		Applications/Communications
 Group(de):	Applikationen/Kommunikation
 Group(pl):	Aplikacje/Komunikacja
 Source0:	http://prdownloads.sourceforge.net/gabber/%{name}-%{version}.tar.gz
+Patch0:		%{name}-DESTDIR.patch
 URL:		http://gabber.sourceforge.net/
 BuildRequires:	gnome-libs-devel >= 1.2.13
 BuildRequires:	gtk+-devel >= 1.2.5
@@ -48,6 +49,7 @@ tym prostym w u¿yciu.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 rm missing
