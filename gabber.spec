@@ -19,14 +19,12 @@ BuildRequires:	gettext-devel
 BuildRequires:	gtk+-devel >= 1.2.5
 BuildRequires:	gtkmm-devel >= 1.1.12
 BuildRequires:	libtool
-BuildRequires:	iconv >= 2.2.0
 BuildRequires:	libglade-devel
 BuildRequires:	libsigc++-devel
 BuildRequires:	libunicode-devel
 BuildRequires:	openssl-devel >= 0.9.6a
 BuildRequires:	scrollkeeper
 BuildRequires:	xml-i18n-tools
-Requires:	iconv >= 2.2.0
 Prereq:		/sbin/ldconfig
 Prereq:		scrollkeeper
 Requires:	applnk
