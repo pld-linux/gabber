@@ -3,22 +3,17 @@
 # _with_ipv6        - with IPv6 support
 #
 
-%define snap 20030508
-
 Summary:	A GNOME Jabber client
 Summary(pl):	Klient Jabber dla GNOME
 Summary(pt_BR):	Um cliente GNOME para o Jabber
 Name:		gabber
 Version:	1.9.0
-Release:	0.%{snap}.1
+Release:	0.1
 License:	GPL
 Group:		Applications/Communications
 # take source 0 from cvs, please
-Source0:	%{name}-%{version}.%{snap}.tar.bz2
-#Source0:	http://jabberstudio.org/gabber/%{name}-%{version}.tar.gz
+Source0:	http://www.jabberstudio.org/projects/gabber/releases/download.php?file=%{name}-%{version}.tar.gz
 URL:		http://gabber.sourceforge.net/
-Requires(post,postun):	/sbin/ldconfig
-Requires(post,postun):	scrollkeeper
 Requires:	gnupg
 BuildRequires:	gconfmm-devel >= 2.0.0
 BuildRequires:	jabberoo-devel >= 1.1.3
