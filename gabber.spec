@@ -71,14 +71,14 @@ xml-i18n-toolize --copy --force
 gettextize --copy --force
 aclocal -I %{_aclocaldir}/gnome
 autoheader
-autoconf
-automake -a -c -f
+%{__autoconf}
+%{__automake}
 cd jabberoo
 rm -f missing
 aclocal -I %{_aclocaldir}/gnome
 autoheader
-autoconf
-automake -a -c -f
+%{__autoconf}
+%{__automake}
 cd ..
 CXXFLAGS="%{rpmcflags}"
 %configure \
