@@ -3,7 +3,7 @@
 # _with_ipv6        - with IPv6 support
 #
 
-%define snap 20030506
+%define snap 20030508
 
 Summary:	A GNOME Jabber client
 Summary(pl):	Klient Jabber dla GNOME
