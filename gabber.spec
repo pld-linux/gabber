@@ -1,5 +1,5 @@
 Summary:	A GNOME Jabber client
-Summary(es):	Klient Jabber dla GNOME
+Summary(pl):	Klient Jabber dla GNOME
 Name:		gabber
 Version:	0.8.2
 Release:	5
