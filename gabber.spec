@@ -7,7 +7,7 @@ Summary(pl):	Klient Jabber dla GNOME
 Summary(pt_BR):	Um cliente GNOME para o Jabber
 Name:		gabber
 Version:	0.8.7
-Release:	1
+Release:	1.1
 License:	GPL
 Group:		Applications/Communications
 Source0:	http://prdownloads.sourceforge.net/gabber/%{name}-%{version}.tar.gz
@@ -73,15 +73,16 @@ aclocal -I %{_aclocaldir}/gnome
 autoheader
 autoconf
 automake -a -c -f
-(cd jabberoo
+cd jabberoo
 rm -f missing
 aclocal -I %{_aclocaldir}/gnome
 autoheader
 autoconf
-automake -a -c)
+automake -a -c -f
+cd ..
 CXXFLAGS="%{rpmcflags}"
 %configure \
-	--%{?debug:dis}%{!?devbug:en}able-debug \
+	--%{!?debug:dis}%{?debug:en}able-debug \
 	--enable-gnome \
 	--enable-panel \
 	--enable-ssl \
