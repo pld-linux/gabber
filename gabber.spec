@@ -6,19 +6,17 @@ Summary:	A GNOME Jabber client
 Summary(pl):	Klient Jabber dla GNOME
 Summary(pt_BR):	Um cliente GNOME para o Jabber
 Name:		gabber
-Version:	0.8.7
-Release:	4
+Version:	0.8.8
+Release:	1
 License:	GPL
 Group:		Applications/Communications
+# Source0-md5:	e0748960c47982c1d6d17525c42efe41
 Source0:	http://dl.sourceforge.net/gabber/%{name}-%{version}.tar.gz
-# Source0-md5:	afd0c258b27dfb386e7ec668a9d371aa
 Patch0:		%{name}-DESTDIR.patch
 Patch1:		%{name}-ac_fixes.patch
 Patch2:		%{name}-omf.patch
 URL:		http://gabber.sourceforge.net/
 BuildRequires:	ORBit-devel
-BuildRequires:	autoconf
-BuildRequires:	automake
 BuildRequires:	gal-devel >= 0.19
 BuildRequires:	gdk-pixbuf-gnome-devel
 BuildRequires:	gettext-devel
@@ -60,27 +58,11 @@ mesmo tempo fácil de usar.
 
 %prep
 %setup -q
-%patch0 -p1
-%patch1 -p1
-%patch2 -p1
+#%patch0 -p1
+#%patch1 -p1
+#%patch2 -p1
 
 %build
-sed -e s/AM_GNOME_GETTEXT/AM_GNU_GETTEXT/ configure.in > configure.in.tmp
-mv -f configure.in.tmp configure.in
-rm -f missing
-intltoolize --copy --force
-%{__gettextize}
-%{__aclocal} -I %{_aclocaldir}/gnome
-%{__autoheader}
-%{__autoconf}
-%{__automake}
-cd jabberoo
-rm -f missing
-%{__aclocal} -I %{_aclocaldir}/gnome
-%{__autoheader}
-%{__autoconf}
-%{__automake}
-cd ..
 CXXFLAGS="%{rpmcflags}"
 %configure \
 	--%{!?debug:dis}%{?debug:en}able-debug \
