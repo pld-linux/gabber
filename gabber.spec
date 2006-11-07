@@ -79,5 +79,5 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_libdir}/Gabber
 %attr(755,root,root) %{_libdir}/Gabber/*.so
 %{_datadir}/Gabber
-%{_desktopdir}/*
+%{_desktopdir}/*.desktop
 %{_pixmapsdir}/*
