@@ -3,8 +3,8 @@
 # _with_ipv6        - with IPv6 support
 #
 Summary:	A GNOME Jabber client
-Summary(pl):	Klient Jabber dla GNOME
-Summary(pt_BR):	Um cliente GNOME para o Jabber
+Summary(pl.UTF-8):   Klient Jabber dla GNOME
+Summary(pt_BR.UTF-8):   Um cliente GNOME para o Jabber
 Name:		gabber
 Version:	1.9.4
 Release:	1.1
@@ -30,16 +30,16 @@ messaging system called Jabber. Gabber aims to be a fairly complete
 client while remaining easy to use, trying to maintain a balance
 between too many features and being powerful enough.
 
-%description -l pl
+%description -l pl.UTF-8
 Gabber jest klientem GNOME dla dystrybuowanego na zasadach Open Source
-systemu Natychmiastowych Wiadomo∂ci (IM - Instant Messaging) o nazwie
-Jabber. Gabber jest kompletnym klientem systemu Jabber pozostaj±c przy
-tym prostym w uøyciu.
+systemu Natychmiastowych Wiadomo≈õci (IM - Instant Messaging) o nazwie
+Jabber. Gabber jest kompletnym klientem systemu Jabber pozostajƒÖc przy
+tym prostym w u≈ºyciu.
 
-%description -l pt_BR
-Gabber È um cliente GNOME para o sistema distribuÌdo de mensagens
-instant‚neas Jabber. Gabber È um cliente completo, sendo poderoso e ao
-mesmo tempo f·cil de usar.
+%description -l pt_BR.UTF-8
+Gabber √© um cliente GNOME para o sistema distribu√≠do de mensagens
+instant√¢neas Jabber. Gabber √© um cliente completo, sendo poderoso e ao
+mesmo tempo f√°cil de usar.
 
 %prep
 %setup -q -n Gabber-%{version}
