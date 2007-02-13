@@ -3,8 +3,8 @@
 # _with_ipv6        - with IPv6 support
 #
 Summary:	A GNOME Jabber client
-Summary(pl.UTF-8):   Klient Jabber dla GNOME
-Summary(pt_BR.UTF-8):   Um cliente GNOME para o Jabber
+Summary(pl.UTF-8):	Klient Jabber dla GNOME
+Summary(pt_BR.UTF-8):	Um cliente GNOME para o Jabber
 Name:		gabber
 Version:	1.9.4
 Release:	1.1
