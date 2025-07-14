@@ -43,8 +43,8 @@ mesmo tempo fácil de usar.
 
 %prep
 %setup -q -n Gabber-%{version}
-%patch0 -p1
-%patch1 -p1
+%patch -P0 -p1
+%patch -P1 -p1
 
 %build
 CXXFLAGS="%{rpmcflags}"
